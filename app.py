@@ -22,7 +22,7 @@ qa_pairs = [
             "akd izdiad", "chahada izdiad", "akd l izdiad"
         ],
         "answer": """<div class="answer-section">
-        <h4>📋 Documents requis / الوثائق المطلوبة :</h4>
+        <h4>Documents requis / الوثائق المطلوبة :</h4>
         <ul>
             <li>Formulaire de demande rempli et signé / استمارة الطلب معبأة وموقعة</li>
             <li>Pièce d'identité du demandeur / بطاقة التعريف الوطنية للمتقدم</li>
@@ -42,7 +42,7 @@ qa_pairs = [
             "awqat l3amal", "ouverture", "ouvertur", "ouvertur mairie"
         ],
         "answer": """<div class="answer-section">
-        <h4>🕐 Horaires d'ouverture / أوقات العمل :</h4>
+        <h4>Horaires d'ouverture / أوقات العمل :</h4>
         <p><strong>Lundi - Vendredi / الاثنين - الجمعة :</strong> 8h00 - 16h00 / 8:00 صباحاً - 4:00 مساءً</p>
         <p><strong>Samedi / السبت :</strong> 8h00 - 12h00 / 8:00 صباحاً - 12:00 ظهراً</p>
         <p><strong>Dimanche / الأحد :</strong> Fermé / مغلق</p>
@@ -59,7 +59,7 @@ qa_pairs = [
             "shahada sokna", "chahadat sokna", "shahadat sokna"
         ],
         "answer": """<div class="answer-section">
-        <h4>🏠 Documents requis / الوثائق المطلوبة :</h4>
+        <h4>Documents requis / الوثائق المطلوبة :</h4>
         <ul>
             <li>Formulaire de demande rempli et signé / استمارة الطلب معبأة وموقعة</li>
             <li>Pièce d'identité nationale / البطاقة الوطنية للتعريف</li>
@@ -81,9 +81,9 @@ qa_pairs = [
             "fin ljam3a", "fin jam3a"
         ],
         "answer": """<div class="answer-section">
-        <h4>📍 Adresse de la mairie / عنوان الجماعة :</h4>
+        <h4>Adresse de la mairie / عنوان الجماعة :</h4>
         <p><strong>Commune de Fès / جماعة فاس</strong></p>
-        <p>Avenue des FAR / شارع القوات المسلحة الملكية</p>
+        <p>Avenue Omar Ibnou Khattab / شارع عمر بن الخطاب</p>
         <p>Fès, Maroc / فاس، المغرب</p>
         <p><strong>Téléphone / الهاتف :</strong> 05 35 62 56 95</p>
     </div>"""
@@ -100,7 +100,7 @@ qa_pairs = [
             "carta watania", "carta watania maroc", "carta watania marok"
         ],
         "answer": """<div class="answer-section">
-        <h4>🆔 Documents requis / الوثائق المطلوبة :</h4>
+        <h4>Documents requis / الوثائق المطلوبة :</h4>
         <ul>
             <li>Extrait d'acte de naissance récent (moins de 3 mois) / نسخة موجزة من عقد الازدياد حديثة (أقل من 3 أشهر)</li>
             <li>4 photos d'identité récentes, en couleur, sur fond blanc / أربع صور فوتوغرافية حديثة ملونة بخلفية بيضاء</li>
@@ -122,7 +122,7 @@ qa_pairs = [
             "taxe communale?", "taxe municipale?"
         ],
         "answer": """<div class="answer-section">
-        <h4>💰 Paiement des taxes / دفع الضرائب :</h4>
+        <h4>Paiement des taxes / دفع الضرائب :</h4>
         <p><strong>Lieu de paiement / مكان الدفع :</strong></p>
         <ul>
             <li>Service des finances de la commune / مصلحة المالية بالجماعة</li>
@@ -142,7 +142,7 @@ qa_pairs = [
             "حجز موعد", "حجز موعد؟", "موعد جماعة", "موعد جماعة؟", "rdv", "rdv جماعة", "rdv جماعة؟"
         ],
         "answer": """<div class="answer-section">
-        <h4>📅 Prise de rendez-vous / حجز المواعيد :</h4>
+        <h4>Prise de rendez-vous / حجز المواعيد :</h4>
         <p><strong>Méthodes disponibles / الطرق المتاحة :</strong></p>
         <ul>
             <li>Par téléphone / بالهاتف : 05 35 62 56 95</li>
@@ -163,7 +163,7 @@ qa_pairs = [
             "chahadat zawaj"
         ],
         "answer": """<div class="answer-section">
-        <h4>💒 Documents requis / الوثائق المطلوبة :</h4>
+        <h4>Documents requis / الوثائق المطلوبة :</h4>
         <ul>
             <li>Formulaire de demande rempli et signé / استمارة الطلب معبأة وموقعة</li>
             <li>Pièce d'identité nationale / البطاقة الوطنية للتعريف</li>
@@ -184,7 +184,7 @@ qa_pairs = [
             "خدمات عبر الانترنت", "services electroniques", "services electronique"
         ],
         "answer": """<div class="answer-section">
-        <h4>💻 Services en ligne disponibles / الخدمات الإلكترونية المتوفرة :</h4>
+        <h4>Services en ligne disponibles / الخدمات الإلكترونية المتوفرة :</h4>
         <ul>
             <li>Demande d'actes d'état civil / طلب وثائق الحالة المدنية</li>
             <li>Paiement des taxes municipales / دفع الضرائب الجماعية</li>
@@ -279,7 +279,7 @@ def get_follow_up_question(intent, step=1):
         'birth_certificate': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>📋 Type d'acte de naissance :</h4>
+        <h4>Type d'acte de naissance :</h4>
         <p>Pour quel type d'acte de naissance avez-vous besoin ?</p>
         <ul>
             <li>Extrait simple</li>
@@ -288,7 +288,7 @@ def get_follow_up_question(intent, step=1):
         </ul>
     </div>
     <div class="arabic-section">
-        <h4>📋 نوع عقد الازدياد :</h4>
+        <h4>نوع عقد الازدياد :</h4>
         <p>ما نوع عقد الازدياد الذي تحتاجه؟</p>
         <ul>
             <li>نسخة بسيطة</li>
@@ -301,11 +301,11 @@ def get_follow_up_question(intent, step=1):
         'national_id': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>🆔 Type de demande :</h4>
+        <h4>Type de demande :</h4>
         <p>S'agit-il d'une première demande ou d'un renouvellement ?</p>
     </div>
     <div class="arabic-section">
-        <h4>🆔 نوع الطلب :</h4>
+        <h4>نوع الطلب :</h4>
         <p>هل هي طلب أولي أم تجديد؟</p>
     </div>
 </div>"""
@@ -313,11 +313,11 @@ def get_follow_up_question(intent, step=1):
         'passport': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>📘 Type de demande :</h4>
+        <h4>Type de demande :</h4>
         <p>S'agit-il d'une première demande ou d'un renouvellement ?</p>
     </div>
     <div class="arabic-section">
-        <h4>📘 نوع الطلب :</h4>
+        <h4>نوع الطلب :</h4>
         <p>هل هي طلب أولي أم تجديد؟</p>
     </div>
 </div>"""
@@ -325,11 +325,11 @@ def get_follow_up_question(intent, step=1):
         'residence_certificate': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>🏠 Durée de résidence :</h4>
+        <h4>Durée de résidence :</h4>
         <p>Habitez-vous à cette adresse depuis plus de 6 mois ?</p>
     </div>
     <div class="arabic-section">
-        <h4>🏠 مدة السكنى :</h4>
+        <h4>مدة السكنى :</h4>
         <p>هل تسكن في هذا العنوان منذ أكثر من 6 أشهر؟</p>
     </div>
 </div>"""
@@ -337,11 +337,11 @@ def get_follow_up_question(intent, step=1):
         'marriage': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>💒 Type de mariage :</h4>
+        <h4>Type de mariage :</h4>
         <p>S'agit-il d'un mariage civil ou religieux ?</p>
     </div>
     <div class="arabic-section">
-        <h4>💒 نوع الزواج :</h4>
+        <h4>نوع الزواج :</h4>
         <p>هل هو زواج مدني أم ديني؟</p>
     </div>
 </div>"""
@@ -349,11 +349,11 @@ def get_follow_up_question(intent, step=1):
         'taxes': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>💰 Type de taxes :</h4>
+        <h4>Type de taxes :</h4>
         <p>Quel type de taxes souhaitez-vous payer ?</p>
     </div>
     <div class="arabic-section">
-        <h4>💰 نوع الضرائب :</h4>
+        <h4>نوع الضرائب :</h4>
         <p>ما نوع الضرائب التي تريد دفعها؟</p>
     </div>
 </div>"""
@@ -361,11 +361,11 @@ def get_follow_up_question(intent, step=1):
         'business': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>🏪 Type de commerce :</h4>
+        <h4>Type de commerce :</h4>
         <p>Quel type de commerce souhaitez-vous ouvrir ?</p>
     </div>
     <div class="arabic-section">
-        <h4>🏪 نوع المحل التجاري :</h4>
+        <h4>نوع المحل التجاري :</h4>
         <p>ما نوع المحل التجاري الذي تريد فتحه؟</p>
     </div>
 </div>"""
@@ -373,7 +373,7 @@ def get_follow_up_question(intent, step=1):
         'appointment': {
             1: """<div class="answer-section">
     <div class="french-section">
-        <h4>📅 Service demandé :</h4>
+        <h4>Service demandé :</h4>
         <p>Pour quel service souhaitez-vous un rendez-vous ?</p>
     </div>
     <div class="arabic-section">
@@ -392,7 +392,7 @@ def process_conversation_step(user_input, intent, step):
             1: {
                 'extrait simple': """<div class="answer-section">
     <div class="french-section">
-        <h4>📋 Extrait simple - Documents requis :</h4>
+        <h4>Extrait simple - Documents requis :</h4>
         <ul>
             <li>Formulaire de demande</li>
             <li>Pièce d'identité</li>
@@ -401,7 +401,7 @@ def process_conversation_step(user_input, intent, step):
         <p><strong>Durée de traitement :</strong> 2-3 jours</p>
     </div>
     <div class="arabic-section">
-        <h4>📋 نسخة بسيطة - الوثائق المطلوبة :</h4>
+        <h4>نسخة بسيطة - الوثائق المطلوبة :</h4>
         <ul>
             <li>استمارة الطلب</li>
             <li>بطاقة التعريف</li>
@@ -412,7 +412,7 @@ def process_conversation_step(user_input, intent, step):
 </div>""",
                 'copie intégrale': """<div class="answer-section">
     <div class="french-section">
-        <h4>📋 Copie intégrale - Documents requis :</h4>
+        <h4>Copie intégrale - Documents requis :</h4>
         <ul>
             <li>Formulaire de demande</li>
             <li>Pièce d'identité</li>
@@ -422,7 +422,7 @@ def process_conversation_step(user_input, intent, step):
         <p><strong>Durée de traitement :</strong> 3-5 jours</p>
     </div>
     <div class="arabic-section">
-        <h4>📋 نسخة كاملة - الوثائق المطلوبة :</h4>
+        <h4>نسخة كاملة - الوثائق المطلوبة :</h4>
         <ul>
             <li>استمارة الطلب</li>
             <li>بطاقة التعريف</li>
@@ -434,7 +434,7 @@ def process_conversation_step(user_input, intent, step):
 </div>""",
                 'acte avec mentions marginales': """<div class="answer-section">
     <div class="french-section">
-        <h4>📋 Acte avec mentions - Documents requis :</h4>
+        <h4>Acte avec mentions - Documents requis :</h4>
         <ul>
             <li>Formulaire de demande</li>
             <li>Pièce d'identité</li>
@@ -445,7 +445,7 @@ def process_conversation_step(user_input, intent, step):
         <p><strong>Durée de traitement :</strong> 5-7 jours</p>
     </div>
     <div class="arabic-section">
-        <h4>📋 عقد مع إشارات - الوثائق المطلوبة :</h4>
+        <h4>عقد مع إشارات - الوثائق المطلوبة :</h4>
         <ul>
             <li>استمارة الطلب</li>
             <li>بطاقة التعريف</li>
@@ -458,11 +458,11 @@ def process_conversation_step(user_input, intent, step):
 </div>""",
                 'default': """<div class="answer-section">
     <div class="french-section">
-        <h4>📋 Aide pour l'acte de naissance :</h4>
+        <h4>Aide pour l'acte de naissance :</h4>
         <p>Je vais vous guider pour obtenir votre acte de naissance. Pouvez-vous me préciser le type d'acte dont vous avez besoin ?</p>
     </div>
     <div class="arabic-section">
-        <h4>📋 مساعدة لعقد الازدياد :</h4>
+        <h4>مساعدة لعقد الازدياد :</h4>
         <p>سأرشدك للحصول على عقد الازدياد. هل يمكنك تحديد نوع العقد الذي تحتاجه؟</p>
     </div>
 </div>"""
@@ -619,7 +619,7 @@ def find_answer(question, session_id):
             return {
                 "answer": """<div class="answer-section">
     <div class="french-section">
-        <h4>👋 Bienvenue !</h4>
+        <h4>Bienvenue !</h4>
         <p>Comment puis-je vous aider aujourd'hui ?</p>
         <p>Je peux vous informer sur :</p>
         <ul>
@@ -630,7 +630,7 @@ def find_answer(question, session_id):
         </ul>
     </div>
     <div class="arabic-section">
-        <h4>👋 مرحباً !</h4>
+        <h4>مرحباً !</h4>
         <p>كيف يمكنني مساعدتك اليوم؟</p>
         <p>يمكنني إعلامك بـ :</p>
         <ul>
@@ -662,13 +662,13 @@ def find_answer(question, session_id):
             return {
                 "answer": """<div class="answer-section">
     <div class="french-section">
-        <h4>👋 Merci pour votre visite !</h4>
+        <h4>Merci pour votre visite !</h4>
         <p>N'hésitez pas à revenir si vous avez d'autres questions.</p>
         <p><strong>Horaires d'ouverture :</strong> 8h00 - 16h00 (Lun-Ven)</p>
         <p><strong>Contact :</strong> 05 35 62 56 95</p>
     </div>
     <div class="arabic-section">
-        <h4>👋 شكراً لزيارتكم !</h4>
+        <h4>شكراً لزيارتكم !</h4>
         <p>لا تتردد في العودة إذا كان لديك أي أسئلة أخرى.</p>
         <p><strong>أوقات العمل :</strong> 8:00 صباحاً - 4:00 مساءً (الاثنين-الجمعة)</p>
         <p><strong>الاتصال :</strong> 05 35 62 56 95</p>
@@ -773,7 +773,7 @@ def find_answer(question, session_id):
     return {
         "answer": """<div class="answer-section">
     <div class="french-section">
-        <h4>❓ Question non comprise</h4>
+        <h4>Question non comprise</h4>
         <p>Désolé, je n'ai pas compris votre question. Veuillez reformuler.</p>
         <p>Vous pouvez me demander :</p>
         <ul>
@@ -784,7 +784,7 @@ def find_answer(question, session_id):
         </ul>
     </div>
     <div class="arabic-section">
-        <h4>❓ سؤال غير مفهوم</h4>
+        <h4>سؤال غير مفهوم</h4>
         <p>عذراً، لم أفهم سؤالك. يرجى إعادة الصياغة.</p>
         <p>يمكنك أن تسألني عن :</p>
         <ul>
@@ -818,7 +818,7 @@ def get_theme_icon(theme):
 
 def get_font_size_icon(font_size):
     icons = {
-        'normal': '📝',
+        'normal': '🔍',
         'large': '🔍',
         'xlarge': '🔎'
     }

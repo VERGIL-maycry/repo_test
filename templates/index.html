@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Chatbot - Commune de Fès</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <!-- ===== MAIN CHAT CONTAINER ===== -->
+    <div class="chat-container">
+        <!-- ===== CHAT HEADER ===== -->
+        <div class="chat-header">
+            <span>Chatbot - Commune de Fès</span>
+            <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+                <form method="POST" action="{{ url_for('clear_chat') }}" style="margin: 0;">
+                    <input type="hidden" name="session_id" value="{{ session_id }}">
+                    <button type="submit" 
+                            style="background: none; border: none; color: #fff; font-size: 1.1em; cursor: pointer; padding: 0 8px;" 
+                            title="Effacer l'historique" aria-label="Effacer l'historique">
+                        🗑️
+                    </button>
+                </form>
+                
+                <form method="POST" action="{{ url_for('toggle_font_size') }}" style="margin: 0;">
+                    <input type="hidden" name="session_id" value="{{ session_id }}">
+                    <button type="submit" 
+                            style="background: none; border: none; color: #fff; font-size: 1.2em; cursor: pointer; padding: 0 8px;" 
+                            title="{{ font_size_tooltip }}" aria-label="Changer la taille de police">
+                        {{ font_size_icon }}
+                    </button>
+                </form>
+                
+                <form method="POST" action="{{ url_for('toggle_theme') }}" style="margin: 0;">
+                    <input type="hidden" name="session_id" value="{{ session_id }}">
+                    <button type="submit" 
+                            style="background: none; border: none; color: #fff; font-size: 1.2em; cursor: pointer; padding: 0 8px;" 
+                            title="Changer le thème" aria-label="Changer le thème">
+                        {{ theme_icon }}
+                    </button>
+                </form>
+                
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Commune_de_F%C3%A9s.png" 
+                     alt="Logo Commune de Fès" 
+                     style="height: 36px; width: auto; background: #fff; border-radius: 6px; padding: 2px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);" />
+            </div>
+        </div>
+        
+        <!-- ===== CHAT MESSAGES AREA ===== -->
+        <div class="chat-messages" id="chatMessages">
+            {% for message in chat_history %}
+                <div class="message {{ message.sender }}">
+                    {{ message.text | safe }}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <!-- ===== QUICK REPLY BUTTONS ===== -->
+        {% if not in_conversation %}
+        <div class="quick-replies">
+            <form method="POST" action="{{ url_for('chat') }}" style="display: inline;">
+                <input type="hidden" name="session_id" value="{{ session_id }}">
+                <button type="submit" name="question" value="Horaires d'ouverture" class="quick-reply-btn">Horaires</button>
+                <button type="submit" name="question" value="Adresse de la mairie" class="quick-reply-btn">Adresse</button>
+                <button type="submit" name="question" value="Certificat de résidence" class="quick-reply-btn">Certificat résidence</button>
+                <button type="submit" name="question" value="Acte de naissance" class="quick-reply-btn">Acte naissance</button>
+                <button type="submit" name="question" value="Carte d'identité nationale" class="quick-reply-btn">CNI</button>
+                <button type="submit" name="question" value="Passeport" class="quick-reply-btn">Passeport</button>
+            </form>
+        </div>
+        {% else %}
+        <div class="conversation-replies">
+            <form method="POST" action="{{ url_for('chat') }}" style="display: inline;">
+                <input type="hidden" name="session_id" value="{{ session_id }}">
+                {% for button in conversation_buttons %}
+                    <button type="submit" name="question" value="{{ button.value }}" class="quick-reply-btn">{{ button.text }}</button>
+                {% endfor %}
+            </form>
+        </div>
+        {% endif %}
+        
+        <!-- ===== CHAT INPUT FORM ===== -->
+        <form class="chat-input" method="POST" action="{{ url_for('chat') }}">
+            <input type="hidden" name="session_id" value="{{ session_id }}">
+            <div class="input-container">
+                <input type="text" name="question" id="chatInput" placeholder="Écrivez votre question..." autocomplete="off" required />
+                <div class="suggestions-dropdown" id="suggestionsDropdown">
+                    <!-- Suggestions will be populated here -->
+                </div>
+            </div>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        // Available suggestions for the chatbot
+        const suggestions = [
+            "Horaires d'ouverture",
+            "Adresse de la mairie", 
+            "Certificat de résidence",
+            "Acte de naissance",
+            "Carte d'identité nationale",
+            "Passeport",
+            "Certificat de mariage",
+            "Certificat de décès",
+            "Permis de conduire",
+            "Carte grise",
+            "Attestation de domicile",
+            "Certificat de travail",
+            "Bulletin de salaire",
+            "Attestation de scolarité",
+            "Certificat médical",
+            "Attestation de bonne conduite",
+            "Certificat de non-gage",
+            "Attestation de propriété",
+            "Certificat de conformité",
+            "Attestation de résidence",
+            "Comment obtenir un certificat",
+            "Documents nécessaires",
+            "Procédure administrative",
+            "Délais de traitement",
+            "Frais et tarifs",
+            "Contact téléphonique",
+            "Rendez-vous en ligne",
+            "Services en ligne",
+            "Urgences administratives"
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            const suggestionsDropdown = document.getElementById('suggestionsDropdown');
+            
+            // Apply theme and font size from server-side preferences
+            const theme = '{{ theme }}' || 'dark';
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+            
+            const fontSize = '{{ font_size }}' || 'normal';
+            if (fontSize !== 'normal') {
+                document.body.setAttribute('data-font-size', fontSize);
+            }
+            
+            // Auto-scroll to bottom of chat messages
+            const chatMessages = document.getElementById('chatMessages');
+            if (chatMessages) {
+                setTimeout(() => {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 100);
+            }
+            
+            // Suggestion functionality
+            chatInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                if (query.length < 2) {
+                    suggestionsDropdown.style.display = 'none';
+                    return;
+                }
+                
+                const filteredSuggestions = suggestions.filter(suggestion => 
+                    suggestion.toLowerCase().includes(query)
+                ).slice(0, 5); // Limit to 5 suggestions
+                
+                if (filteredSuggestions.length > 0) {
+                    displaySuggestions(filteredSuggestions);
+                } else {
+                    suggestionsDropdown.style.display = 'none';
+                }
+            });
+            
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!chatInput.contains(e.target) && !suggestionsDropdown.contains(e.target)) {
+                    suggestionsDropdown.style.display = 'none';
+                }
+            });
+            
+            // Handle suggestion selection
+            suggestionsDropdown.addEventListener('click', function(e) {
+                if (e.target.classList.contains('suggestion-item')) {
+                    chatInput.value = e.target.textContent;
+                    suggestionsDropdown.style.display = 'none';
+                    chatInput.focus();
+                }
+            });
+            
+            // Keyboard navigation for suggestions
+            let selectedIndex = -1;
+            const suggestionItems = [];
+            
+            chatInput.addEventListener('keydown', function(e) {
+                if (suggestionsDropdown.style.display === 'block') {
+                    const items = suggestionsDropdown.querySelectorAll('.suggestion-item');
+                    
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+                        updateSelection(items);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        selectedIndex = Math.max(selectedIndex - 1, -1);
+                        updateSelection(items);
+                    } else if (e.key === 'Enter' && selectedIndex >= 0) {
+                        e.preventDefault();
+                        if (items[selectedIndex]) {
+                            chatInput.value = items[selectedIndex].textContent;
+                            suggestionsDropdown.style.display = 'none';
+                            selectedIndex = -1;
+                        }
+                    } else if (e.key === 'Escape') {
+                        suggestionsDropdown.style.display = 'none';
+                        selectedIndex = -1;
+                    }
+                }
+            });
+            
+            function updateSelection(items) {
+                items.forEach((item, index) => {
+                    if (index === selectedIndex) {
+                        item.classList.add('selected');
+                    } else {
+                        item.classList.remove('selected');
+                    }
+                });
+            }
+            
+            function displaySuggestions(suggestions) {
+                suggestionsDropdown.innerHTML = '';
+                suggestions.forEach(suggestion => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+                    item.textContent = suggestion;
+                    suggestionsDropdown.appendChild(item);
+                });
+                suggestionsDropdown.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html> 

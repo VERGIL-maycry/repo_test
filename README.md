@@ -215,11 +215,3 @@ app.run(debug=False, host='0.0.0.0', port=5000)
 ## License
 
 This project is open source and available under the MIT License.
-
-## Support
-
-For questions or issues, please create an issue in the repository or contact the development team.
-
----
-
-**Note**: This is the Python Flask version of the original JavaScript chatbot. All functionality has been preserved and enhanced with server-side processing capabilities. 
